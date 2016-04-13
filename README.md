@@ -1,7 +1,7 @@
 # puppet-module-timezone
 ===
 
-[![Build Status](https://api.travis-ci.org/ngrossmann/puppet-module-timezone.png?branch=master)](https://travis-ci.org/ngrossmann/puppet-module-timezone)
+[![Build Status](https://api.travis-ci.org/ghoneycutt/puppet-module-timezone.png?branch=master)](https://travis-ci.org/ghoneycutt/puppet-module-timezone)
 
 Manage system time zone.
 
@@ -9,7 +9,9 @@ Manage system time zone.
 
 # Compatibility
 ---------------
-This module is built for use with Puppet v3 with Ruby versions 1.8.7, 1.9.3, 2.0.0 and 2.1.0 on the following systems.
+This module has been tested to work on the following systems with Puppet v3
+(with and without the future parser) and v4 with Ruby versions 1.8.7 (Puppet v3
+only), 1.9.3, 2.0.0 and 2.1.0.
 
 * EL 5
 * EL 6
