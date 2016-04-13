@@ -9,7 +9,7 @@ class timezone (
   $srm         = undef,
 ) {
 
-  if type($hwclock_utc) == 'string' {
+  if type3x($hwclock_utc) == 'string' {
     $hwclock_utc_real = str2bool($hwclock_utc)
   } else {
     $hwclock_utc_real = $hwclock_utc
@@ -20,7 +20,7 @@ class timezone (
   validate_absolute_path($tzdata)
 
   if $arc != undef {
-    if type($arc) == 'string' {
+    if type3x($arc) == 'string' {
       $arc_real = str2bool($arc)
     } else {
       $arc_real = $arc
@@ -29,7 +29,7 @@ class timezone (
   }
 
   if $srm != undef {
-    if type($srm) == 'string' {
+    if type3x($srm) == 'string' {
       $srm_real = str2bool($srm)
     } else {
       $srm_real = $srm
@@ -40,7 +40,7 @@ class timezone (
   case $::osfamily {
     'RedHat': {
 
-      if $::operatingsystemmajrelease != 7 {
+      if versioncmp("${::operatingsystemmajrelease}", '7') != 0 { # lint:ignore:only_variable_string
         file { '/etc/sysconfig/clock':
           owner   => 'root',
           group   => 'root',

@@ -8,8 +8,8 @@ describe 'timezone', :type => 'class' do
           let(:facts) do
             {
               :osfamily                  => 'RedHat',
-              :lsbmajdistrelease         => :release,
-              :operatingsystemmajrelease => :release,
+              :lsbmajdistrelease         => release,
+              :operatingsystemmajrelease => release,
             }
           end
 
@@ -18,7 +18,7 @@ describe 'timezone', :type => 'class' do
               with_target('/usr/share/zoneinfo/UTC')
           }
 
-          if :release == '7'
+          if release == '7'
             it { should_not contain_file('/etc/sysconfig/clock') }
           else
             it {
@@ -28,12 +28,12 @@ describe 'timezone', :type => 'class' do
                 'mode'  => '0644',
               })
             }
-          end
 
           it { should contain_file('/etc/sysconfig/clock').with_content(/^ZONE=\"UTC\"$/) }
           it { should contain_file('/etc/sysconfig/clock').with_content(/^UTC=true$/) }
           it { should contain_file('/etc/sysconfig/clock').without_content(/^ARC/) }
           it { should contain_file('/etc/sysconfig/clock').without_content(/^SRM/) }
+          end
         end
 
         [true,'true',false,'false'].each do |arc_value|
@@ -42,7 +42,7 @@ describe 'timezone', :type => 'class' do
             let(:facts) do
               {
                 :osfamily          => 'RedHat',
-                :lsbmajdistrelease => :release,
+                :lsbmajdistrelease => release,
               }
             end
 
@@ -76,7 +76,7 @@ describe 'timezone', :type => 'class' do
           let(:facts) do
             {
               :osfamily          => 'RedHat',
-              :lsbmajdistrelease => :release,
+              :lsbmajdistrelease => release,
             }
           end
 
@@ -93,7 +93,7 @@ describe 'timezone', :type => 'class' do
             let(:facts) do
               {
                 :osfamily          => 'RedHat',
-                :lsbmajdistrelease => :release,
+                :lsbmajdistrelease => release,
               }
             end
 
@@ -127,7 +127,7 @@ describe 'timezone', :type => 'class' do
           let(:facts) do
             {
               :osfamily          => 'RedHat',
-              :lsbmajdistrelease => :release,
+              :lsbmajdistrelease => release,
             }
           end
 
