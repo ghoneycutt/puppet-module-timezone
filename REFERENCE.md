@@ -26,9 +26,9 @@ include timezone
 
 The following parameters are available in the `timezone` class:
 
-* [`timezone`](#timezone)
+* [`timezone`](#-timezone--timezone)
 
-##### <a name="timezone"></a>`timezone`
+##### <a name="-timezone--timezone"></a>`timezone`
 
 Data type: `String[1]`
 
