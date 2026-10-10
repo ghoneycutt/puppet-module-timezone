@@ -13,8 +13,7 @@ describe 'timezone' do
                                                      .with_target('/usr/share/zoneinfo/UTC')
       }
 
-      case os_facts[:os]['family']
-      when 'Debian'
+      if os_facts[:os]['name'] == 'Ubuntu' && Gem::Version.new(os_facts[:os]['release']['full']) < Gem::Version.new('26.04')
         it {
           is_expected.to contain_file('/etc/timezone').with({
             'owner' => 'root',
@@ -23,6 +22,8 @@ describe 'timezone' do
             'content' => "UTC\n",
           })
         }
+      else
+        it { is_expected.not_to contain_file('/etc/timezone') }
       end
     end
 
@@ -37,8 +38,7 @@ describe 'timezone' do
                                                      .with_target('/usr/share/zoneinfo/Europe/Berlin')
       }
 
-      case os_facts[:os]['family']
-      when 'Debian'
+      if os_facts[:os]['name'] == 'Ubuntu' && Gem::Version.new(os_facts[:os]['release']['full']) < Gem::Version.new('26.04')
         it {
           is_expected.to contain_file('/etc/timezone').with({
             'owner' => 'root',
@@ -47,20 +47,20 @@ describe 'timezone' do
             'content' => "Europe/Berlin\n",
           })
         }
+      else
+        it { is_expected.not_to contain_file('/etc/timezone') }
       end
     end
   end
 
   describe 'on unsupported platform' do
-    let :facts do
-      { :os['family'] => 'unsupported' }
+    let(:facts) do
+      { os: { 'family' => 'unsupported', 'name' => 'unsupported', 'release' => { 'full' => '1' } } }
     end
 
-    it 'does not fail' do
-      expect do
-        is_expected.to contain_class('vim')
-      end
-    end
+    it { is_expected.to compile.with_all_deps }
+    it { is_expected.to contain_file('/etc/localtime') }
+    it { is_expected.not_to contain_file('/etc/timezone') }
   end
 
   describe 'variable data type and content validations' do
