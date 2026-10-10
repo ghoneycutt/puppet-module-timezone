@@ -6,13 +6,13 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.34
+    &mdash; Documentation by YARD 0.9.45
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -57,77 +59,53 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-timezone">timezone</h1>
-
-<h4 id="label-Table+of+Contents">Table of Contents</h4>
-<ol><li>
-<p><a href="#module-description">Module Description - What the module does and why it is useful</a></p>
-</li><li>
-<p><a href="#setup">Setup - The basics of getting started with timezone</a></p>
-</li><li>
-<p><a href="#what-timezone-affects">What timezone affects</a></p>
-</li><li>
-<p><a href="#setup-requirements">Setup requirements</a></p>
-</li><li>
-<p><a href="#beginning-with-timezone">Beginning with timezone</a></p>
-</li><li>
-<p><a href="#usage">Usage - Configuration options and additional functionality</a></p>
-</li><li>
-<p><a href="#limitations">Limitations - OS compatibility, etc.</a></p>
-</li><li>
-<p><a href="#development">Development - Guide for contributing to the module</a></p>
-</li></ol>
-
-<h2 id="label-Module+description">Module description</h2>
-
-<p>This module manages the timezone. Documented with Puppet Strings at <a href="http://ghoneycutt.github.io/puppet-module-timezone/">ghoneycutt.github.io/puppet-module-timezone/</a>.</p>
-
-<h2 id="label-Setup">Setup</h2>
-
-<h3 id="label-What+timezone+affects">What timezone affects</h3>
-
-<p>It symlinks <code>/etc/localtime</code> to the appropriate timezone under <code>/usr/share/zoneinfo/</code>. On Debian and Ubuntu it manages <code>/etc/timezone</code>.</p>
-
-<h3 id="label-Setup+requirements">Setup requirements</h3>
-
+      <div id="content"><div id='filecontents'><h1 id="timezone">timezone</h1>
+<h4 id="Table_of_Contents">Table of Contents</h4>
+<ol>
+<li><a href="#module-description">Module Description - What the module does and why it is useful</a></li>
+<li>
+<a href="#setup">Setup - The basics of getting started with timezone</a>
+<ul>
+<li><a href="#what-timezone-affects">What timezone affects</a></li>
+<li><a href="#setup-requirements">Setup requirements</a></li>
+<li><a href="#beginning-with-timezone">Beginning with timezone</a></li>
+</ul>
+</li>
+<li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+<li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+<li><a href="#development">Development - Guide for contributing to the module</a></li>
+</ol>
+<h2 id="Module_description">Module description</h2>
+<p>This module manages the timezone. Documented with Puppet Strings at
+<a href="http://ghoneycutt.github.io/puppet-module-timezone/"><a href="http://ghoneycutt.github.io/puppet-module-timezone/">http://ghoneycutt.github.io/puppet-module-timezone/</a></a>.</p>
+<h2 id="Setup">Setup</h2>
+<h3 id="What_timezone_affects">What timezone affects</h3>
+<p>It symlinks <code>/etc/localtime</code> to the appropriate timezone under
+<code>/usr/share/zoneinfo/</code>. On Debian and Ubuntu it manages <code>/etc/timezone</code>.</p>
+<h3 id="Setup_requirements">Setup requirements</h3>
 <p>This module has no dependencies outside of stdlib.</p>
-
-<h3 id="label-Beginning+with+timezone">Beginning with timezone</h3>
-
-<p>Include the <code>timezone</code> class to set your timezone to ‘UTC’.</p>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_timezone'>timezone</span>
+<h3 id="Beginning_with_timezone">Beginning with timezone</h3>
+<p>Include the <code>timezone</code> class to set your timezone to 'UTC'.</p>
+<pre class="code puppet"><code class="puppet">include timezone
 </code></pre>
-
-<h2 id="label-Usage">Usage</h2>
-
-<h3 id="label-To+set+the+timezone+to+something+other+than+the+default+of+-27UTC-27.">To set the timezone to something other than the default of ‘UTC’.</h3>
-
-<h4 id="label-Example+using+a+manifest">Example using a manifest</h4>
-
-<pre class="code ruby"><code class="ruby">class { &#39;timezone&#39;:
+<h2 id="Usage">Usage</h2>
+<h3 id="To_set_the_timezone_to_something_other_than_the_default_of__UTC__">To set the timezone to something other than the default of 'UTC'.</h3>
+<h4 id="Example_using_a_manifest">Example using a manifest</h4>
+<pre class="code puppet"><code class="puppet">class { &#39;timezone&#39;:
   timezone =&gt; &#39;Europe/Berlin&#39;,
 }
 </code></pre>
-
-<h4 id="label-Example+using+Hiera">Example using Hiera</h4>
-
-<pre class="code ruby"><code class="ruby">timezone::timezone: &#39;Europe/Berlin&#39;
+<h4 id="Example_using_Hiera">Example using Hiera</h4>
+<pre class="code yaml"><code class="yaml">timezone::timezone: &#39;Europe/Berlin&#39;
 </code></pre>
-
-<h2 id="label-Limitations">Limitations</h2>
-
-<p>This module officially supports the platforms listed in the <code>metadata.json</code>. It does not fail on unsupported platforms and has been known to work on many Linux platforms since its creation in 2014.</p>
-
-<h2 id="label-Development">Development</h2>
-
-<p>See <a href="CONTRIBUTING_md.html">CONTRIBUTING.md</a></p>
-
-<h2 id="label-License">License</h2>
-
-<p>See <a href="LICENSE">LICENSE</a> file.</p>
-</div></div>
+<h2 id="Limitations">Limitations</h2>
+<p>This module officially supports the platforms listed in the
+<code>metadata.json</code>. It does not fail on unsupported platforms and has been
+known to work on many Linux platforms since its creation in 2014.</p>
+<h2 id="Development">Development</h2>
+<p>See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a></p>
+<h2 id="License">License</h2>
+<p>See <a href="LICENSE">LICENSE</a> file.</p></div></div>
 
       <div id="footer">
      Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.

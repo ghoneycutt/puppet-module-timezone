@@ -6,13 +6,13 @@
 <title>
   Puppet Class: timezone
   
-    &mdash; Documentation by YARD 0.9.34
+    &mdash; Documentation by YARD 0.9.45
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "puppet_classes::timezone";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -86,12 +88,10 @@
 <div class="tags">
   
   <div class="examples">
-    <p class="tag_title">Examples:</p>
+    <h4 class="tag_title">Examples:</h4>
     
       
-        <p class="example_title"><div class='inline'>
-<p>Declaring the class</p>
-</div></p>
+        <h5 class="example_title"><div class='inline'><p>Declaring the class</p></div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_timezone'>timezone</span></code></pre>
     
@@ -111,9 +111,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The systems default timezone, e.g. ‘UTC’ or ‘Europe/Berlin’. See <code>/usr/share/zoneinfo</code> for available values.</p>
-</div>
+        <div class='inline'><p>The systems default timezone, e.g. 'UTC' or 'Europe/Berlin'. See
+<code>/usr/share/zoneinfo</code> for available values.</p></div>
       
     </li>
   
@@ -147,7 +146,11 @@
 26
 27
 28
-29</pre>
+29
+30
+31
+32
+33</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/init.pp', line 10</span>
@@ -163,7 +166,11 @@ class timezone (
     target =&gt; $tzdata,
   }
 
-  if $facts[&#39;os&#39;][&#39;family&#39;] == &#39;Debian&#39; {
+  # Debian retired /etc/timezone in Debian 13 (tzdata no longer creates or
+  # updates it; the /etc/localtime symlink is the only mechanism). Ubuntu
+  # 22.04 and 24.04 still ship and maintain the file; Ubuntu 26.04 follows
+  # Debian 13. Remove this block when Ubuntu 24.04 support is dropped.
+  if $facts[&#39;os&#39;][&#39;name&#39;] == &#39;Ubuntu&#39; and versioncmp($facts[&#39;os&#39;][&#39;release&#39;][&#39;full&#39;], &#39;26.04&#39;) &lt; 0 {
     file { &#39;/etc/timezone&#39;:
       owner   =&gt; &#39;root&#39;,
       group   =&gt; &#39;root&#39;,
