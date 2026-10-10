@@ -16,26 +16,9 @@ describe 'timezone' do
       it { is_expected.to be_linked_to '/usr/share/zoneinfo/UTC' }
     end
 
-    if (fact('os.family') == 'RedHat') && (fact('os.release.major') == '6')
-
-      content = <<-END.gsub(%r{^\s+\|}, '')
-        |# This file is being maintained by Puppet.
-        |# DO NOT EDIT
-        |#
-        |ZONE="UTC"
-        |UTC=true
-      END
-
-      describe file('/etc/sysconfig/clock') do
-        it { is_expected.to be_file }
-        it { is_expected.to be_owned_by 'root' }
-        it { is_expected.to be_grouped_into 'root' }
-        it { is_expected.to be_mode '644' }
-        its(:content) { is_expected.to eq content }
-      end
-    end
-
-    if fact('os.family') == 'Debian'
+    # /etc/timezone is only managed on Ubuntu releases that still use it;
+    # Debian 13 and Ubuntu 26.04 retired the file (see manifests/init.pp)
+    if fact('os.name') == 'Ubuntu' && Gem::Version.new(fact('os.release.full')) < Gem::Version.new('26.04')
 
       content = <<-END.gsub(%r{^\s+\|}, '')
         |UTC
@@ -47,6 +30,10 @@ describe 'timezone' do
         it { is_expected.to be_grouped_into 'root' }
         it { is_expected.to be_mode '644' }
         its(:content) { is_expected.to eq content }
+      end
+    else
+      describe file('/etc/timezone') do
+        it { is_expected.not_to exist }
       end
     end
   end
