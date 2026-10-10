@@ -1,6 +1,6 @@
 {
   "name": "ghoneycutt-timezone",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "author": "ghoneycutt",
   "summary": "Manage system time zone",
   "license": "Apache-2.0",

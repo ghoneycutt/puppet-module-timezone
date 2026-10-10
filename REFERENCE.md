@@ -36,4 +36,3 @@ The systems default timezone, e.g. 'UTC' or 'Europe/Berlin'. See
 `/usr/share/zoneinfo` for available values.
 
 Default value: `'UTC'`
-

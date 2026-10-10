@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v5.0.0](https://github.com/ghoneycutt/puppet-module-timezone/tree/v5.0.0) (2026-10-10)
+
+[Full Changelog](https://github.com/ghoneycutt/puppet-module-timezone/compare/v4.0.0...v5.0.0)
+
+### Merged pull requests:
+
+- Adopt OpenVox 8 and 9, refresh supported platforms [\#11](https://github.com/ghoneycutt/puppet-module-timezone/pull/11) ([ghoneycutt](https://github.com/ghoneycutt))
+
 ## [v4.0.0](https://github.com/ghoneycutt/puppet-module-timezone/tree/v4.0.0) (2023-11-15)
 
 [Full Changelog](https://github.com/ghoneycutt/puppet-module-timezone/compare/v3.0.0...v4.0.0)
